@@ -143,6 +143,13 @@ function setInitialPosition() {
 loveMeter.addEventListener('input', () => {
     const value = parseInt(loveMeter.value);
     loveValue.textContent = value;
+
+if (value === 0) {
+        extraLove.classList.remove('hidden', 'super-love');
+        extraLove.textContent = config.loveMessages.sad;
+        loveMeter.style.width = '100%';
+        return;
+    }
     
     if (value > 100) {
         extraLove.classList.remove('hidden');
@@ -151,12 +158,7 @@ loveMeter.addEventListener('input', () => {
         loveMeter.style.width = `calc(100% + ${extraWidth}px)`;
         loveMeter.style.transition = 'width 0.3s';
 
-        if (value === 0) {
-        extraLove.classList.remove('hidden', 'super-love');
-        extraLove.textContent = config.loveMessages.sad;
-        loveMeter.style.width = '100%';
-        return;
-    }
+        
         // Show different messages based on the value
         if (value >= 5000) {
             extraLove.classList.add('super-love');
@@ -164,7 +166,7 @@ loveMeter.addEventListener('input', () => {
         } else if (value > 1000) {
             extraLove.classList.remove('super-love');
             extraLove.textContent = config.loveMessages.high;
-        } else if (value > 100){
+        } else {
             extraLove.classList.remove('super-love');
             extraLove.textContent = config.loveMessages.normal;
         }// else if (value === 0){
