@@ -158,9 +158,12 @@ loveMeter.addEventListener('input', () => {
         } else if (value > 1000) {
             extraLove.classList.remove('super-love');
             extraLove.textContent = config.loveMessages.high;
-        } else {
+        } else if (value > 100){
             extraLove.classList.remove('super-love');
             extraLove.textContent = config.loveMessages.normal;
+        } else {
+            extraLove.classList.remove('super-love');
+            extraLove.textContent = config.loveMessages.sad;
         }
     } else {
         extraLove.classList.add('hidden');
